@@ -6,6 +6,7 @@ public class ChangeTileView : MonoBehaviour
 {
     private ChangableTile targetTile;
     public Image progressBar;
+    public ParticleSystem particleSystem;
     private float duration;
     private void Start()
     {
@@ -19,6 +20,7 @@ public class ChangeTileView : MonoBehaviour
         {
             duration = targetTile.ChangeTimeLeft;
             StartCoroutine(ChangeProgressBar());
+            particleSystem.Play();
         }
     }
 
@@ -30,6 +32,7 @@ public class ChangeTileView : MonoBehaviour
             progressBar.fillAmount = targetTile.ChangeTimeLeft / duration;
             yield return null;
         }
+        particleSystem.Play();
         progressBar.enabled = false;
     }
 }

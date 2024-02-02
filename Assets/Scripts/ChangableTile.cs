@@ -19,7 +19,7 @@ public class ChangableTile : MonoBehaviour
     [SerializeField] private GameObject changeTarget;
     private GameObject createdObject;
 
-    private void Start()
+    void OnMouseDown()
     {
         ChangeTile(5);
     }
