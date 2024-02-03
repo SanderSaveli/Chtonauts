@@ -2,15 +2,15 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ChangeTileView : MonoBehaviour
+public class GeometryChangeTileView : MonoBehaviour
 {
-    private ChangableTile targetTile;
+    private GeometryChangeTile targetTile;
     public Image progressBar;
     public ParticleSystem particleSystem;
     private float duration;
     private void Start()
     {
-        targetTile = gameObject.GetComponentInParent<ChangableTile>();
+        targetTile = gameObject.GetComponentInParent<GeometryChangeTile>();
         targetTile.OnTileChanged += TileChange;
     }
 

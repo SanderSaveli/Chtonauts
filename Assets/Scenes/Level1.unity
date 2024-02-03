@@ -2574,8 +2574,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 457559453}
-  - component: {fileID: 457559452}
-  - component: {fileID: 457559451}
   - component: {fileID: 457559455}
   - component: {fileID: 457559454}
   m_Layer: 0
@@ -2585,44 +2583,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &457559451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 457559450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f54393827e51694693e2732112163ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultCost:
-  - tileType: 0
-    changeCost: 3
-  - tileType: 1
-    changeCost: 3
-  - tileType: 2
-    changeCost: 3
---- !u!114 &457559452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 457559450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e9f7e2f55582a040a689d7684743224, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultDurations:
-  - tileType: 0
-    changeDuration: 5
-  - tileType: 1
-    changeDuration: 5
-  - tileType: 2
-    changeDuration: 5
 --- !u!4 &457559453
 Transform:
   m_ObjectHideFlags: 0
@@ -9875,6 +9835,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manaServiceData: {fileID: 11400000, guid: c386fbc7812981f4fb3b128f6d8f0025, type: 2}
   manaPool: {fileID: 457559454}
+  costData: {fileID: 0}
+  durationData: {fileID: 0}
 --- !u!114 &1831648335
 MonoBehaviour:
   m_ObjectHideFlags: 0

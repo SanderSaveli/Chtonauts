@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6e8fbe5eb8498c43a0b0c379b08fb3f, type: 3}
-  m_Name: ManaServiceData
+  m_Script: {fileID: 11500000, guid: 22f78ab4fe687e34c9c20288cbef0d73, type: 3}
+  m_Name: ChangeDurationData
   m_EditorClassIdentifier: 
-  manaIncreasePerSecond: 0.5
-  startMana: 10
-  maxMana: 10
+  defaultDurations:
+  - tileType: 0
+    changeDuration: 7
+  - tileType: 1
+    changeDuration: 5
+  - tileType: 2
+    changeDuration: 5

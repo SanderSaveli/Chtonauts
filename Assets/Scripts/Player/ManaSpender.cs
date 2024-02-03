@@ -4,13 +4,11 @@ public class ManaSpender : MonoBehaviour
 {
     private IManaService _manaService;
 
-    private ManaCostCalculator _costCalculator;
-    private DurationCalculator _durationCalculator;
+    private IManaCostCalculator _costCalculator;
 
     private void Start()
     {
-        _costCalculator = GetComponent<ManaCostCalculator>();
-        _durationCalculator = GetComponent<DurationCalculator>();
+        _costCalculator = ServiceLocator.Get<IManaCostCalculator>();
         Debug.Log(_costCalculator.ToString());
         _manaService = ServiceLocator.Get<IManaService>();
     }
@@ -25,7 +23,7 @@ public class ManaSpender : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 GameObject clickedObject = hit.collider.gameObject;
-                if (clickedObject.TryGetComponent<ChangableTile>(out ChangableTile changableTile))
+                if (clickedObject.TryGetComponent<InteractiveTile>(out InteractiveTile changableTile))
                 {
                     ActivateTile(changableTile);
                 }
@@ -33,12 +31,12 @@ public class ManaSpender : MonoBehaviour
         }
     }
 
-    private void ActivateTile(ChangableTile tile)
+    private void ActivateTile(InteractiveTile tile)
     {
         int changeCost = _costCalculator.getCost(tile.TileType);
         if (_manaService.TrySpendMana(changeCost))
         {
-            tile.ChangeTile(_durationCalculator.getDuration(tile.TileType));
+            tile.ActivateTile();
         }
     }
 }

@@ -1,15 +1,13 @@
 using System.Collections.Generic;
 
-public class ManaCostCalculator : Calculator
+public class ManaCostCalculator : Calculator, IManaCostCalculator
 {
-    [System.Serializable]
-    public class CostEntry
-    {
-        public TileType tileType;
-        public float changeCost;
+    public ManaCostCalculator(ManaCostData manaCostData)
+    { 
+        defaultCost = manaCostData.defaultCost;
     }
 
-    public List<CostEntry> defaultCost;
+    private List<CostEntry> defaultCost;
     public int getCost(TileType tileType)
     {
         CostEntry entry = defaultCost.Find(item => item.tileType == tileType);
@@ -20,4 +18,10 @@ public class ManaCostCalculator : Calculator
         }
         return 0;
     }
+
+    public void StartWork()
+    {   }
+
+    public void EndWork()
+    {   }
 }

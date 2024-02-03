@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 8034804474383309319}
   - component: {fileID: 3879992087749673845}
   - component: {fileID: 5521892309503843965}
-  - component: {fileID: 7699092972815905921}
+  - component: {fileID: -602966363077935570}
   m_Layer: 5
   m_Name: ChangeViewCanvas 1
   m_TagString: Untagged
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff67d9ecbf1ee99488582ab0e0151d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7699092972815905921
+--- !u!114 &-602966363077935570
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5176724934859232513}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b33360723a5252438752cb638385daa, type: 3}
+  m_Script: {fileID: 11500000, guid: b96c82c3e3b1eeb4bb8db0f58fc1475d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   progressBar: {fileID: 3188889730416568870}
