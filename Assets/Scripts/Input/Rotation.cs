@@ -6,7 +6,7 @@ public class Rotation : MonoBehaviour
 {
    public Transform Target;
    public float MouseSens = 2.5f;
-   public  float timer = 0.5f;
+   public  float timer = 0;
 
     // Update is called once per frame
     void Update()
@@ -22,6 +22,6 @@ public class Rotation : MonoBehaviour
 
         }
        } 
-       else timer = 0.5f;
+       
     }
 }

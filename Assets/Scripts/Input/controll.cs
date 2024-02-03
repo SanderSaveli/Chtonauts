@@ -25,11 +25,11 @@ public class controll : MonoBehaviour
             newPosition.y = Input.GetAxis("Mouse Y") * dragSpeed * Time.deltaTime;
             newPosition.z = Input.GetAxis("Mouse Y") * dragSpeed * Time.deltaTime;
 
-            if (gameObject.transform.position.x > -outerLeft && gameObject.transform.position.x < outerRight && gameObject.transform.position.y > -outerDown && gameObject.transform.position.y < outerUp && gameObject.transform.position.z > -outerDown && gameObject.transform.position.z < outerUp)
+            if (gameObject.transform.position.x > -outerLeft && gameObject.transform.position.x < -outerRight && gameObject.transform.position.y > outerDown && gameObject.transform.position.y < -outerUp && gameObject.transform.position.z > outerDown && gameObject.transform.position.z < -outerUp)
             {
                 transform.Translate(newPosition);
             }
-            if (gameObject.transform.position.x < -outerLeft || gameObject.transform.position.x > outerRight || gameObject.transform.position.y < -outerDown || gameObject.transform.position.y > outerUp || gameObject.transform.position.z < -outerDown || gameObject.transform.position.z > outerUp)
+            if (gameObject.transform.position.x < -outerLeft || gameObject.transform.position.x > -outerRight || gameObject.transform.position.y < outerDown || gameObject.transform.position.y > -outerUp || gameObject.transform.position.z < outerDown || gameObject.transform.position.z > -outerUp)
             {
                 transform.Translate(-newPosition);
             }
