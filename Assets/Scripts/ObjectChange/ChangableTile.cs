@@ -10,19 +10,17 @@ public class ChangableTile : MonoBehaviour
             OnTileChanged?.Invoke(value);
         } 
     }
-    private bool _isChganged;
+    private bool _isChganged; 
     public float ChangeTimeLeft {  get; protected set; }
+
+    [SerializeField] private GameObject _changeTarget;
+    [SerializeField] private TileType _type;
+    public TileType TileType { get => _type; }
+
+    private GameObject createdObject;
 
     public delegate void TileChganged(bool isCghangeToTarget);
     public event TileChganged OnTileChanged;
-
-    [SerializeField] private GameObject changeTarget;
-    private GameObject createdObject;
-
-    void OnMouseDown()
-    {
-        ChangeTile(5);
-    }
 
     public bool ChangeTile(float duration)
     {
@@ -69,7 +67,7 @@ public class ChangableTile : MonoBehaviour
         {
             if(createdObject == null) 
             { 
-                createdObject = Instantiate(changeTarget, transform.position, transform.rotation);
+                createdObject = Instantiate(_changeTarget, transform.position, transform.rotation);
             }
         }
     }
