@@ -10,27 +10,30 @@ public class cameraController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            
-            transform.position += transform.forward * speed * Time.deltaTime;
+            Vector3 dir = transform.forward;
+            dir.y = 0;
+            transform.position += dir * speed * Time.deltaTime;
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            
-            transform.position -= transform.forward * speed * Time.deltaTime;
+            Vector3 dir = transform.forward;
+            dir.y = 0;
+            transform.position -= dir * speed * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            
-            transform.position += transform.right * speed * Time.deltaTime;
+            Vector3 dir = transform.right;
+            dir.y = 0;
+            transform.position += dir * speed * Time.deltaTime;
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            
-            transform.position -= transform.right * speed * Time.deltaTime;
+            Vector3 dir = transform.right;
+            dir.y = 0;
+            transform.position -= dir * speed * Time.deltaTime;
         }
 
         
-        transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
     }
 }
