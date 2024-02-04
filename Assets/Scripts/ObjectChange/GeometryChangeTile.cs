@@ -10,10 +10,13 @@ public class GeometryChangeTile : InteractiveTile
 
     private GameObject createdObject;
     private IDurationCalculator _durationCalculator;
+    public List<MeshRenderer> meshes;
+    private SurfaceCell cell;
 
     private void Start()
     {
         _durationCalculator = ServiceLocator.Get<IDurationCalculator>();
+        cell = gameObject.GetComponent<SurfaceCell>();
     }
     public override bool ActivateTile()
     {
@@ -25,6 +28,7 @@ public class GeometryChangeTile : InteractiveTile
         StartCoroutine(WaitTimeAndChangeBack(duration));
         ChangeGeometry(false);
         IsChganged = true;
+        cell.cellType = CellType.IllusoryWall;
         return true;
 
     }
@@ -43,13 +47,14 @@ public class GeometryChangeTile : InteractiveTile
     protected void ChangeBack()
     {
         ChangeTimeLeft = 0;
+        cell.cellType = CellType.Empty;
         IsChganged = false;
         ChangeGeometry(true);
     }
 
     protected void ChangeGeometry(bool isActive)
     {
-        GetComponent<MeshRenderer>().enabled = isActive;
+        EnableAllMashes(isActive);
         if (isActive)
         {
             if (createdObject != null)
@@ -63,6 +68,14 @@ public class GeometryChangeTile : InteractiveTile
             {
                 createdObject = Instantiate(_changeTarget, transform.position, transform.rotation);
             }
+        }
+    }
+
+    public void EnableAllMashes(bool isAcktive)
+    {
+        foreach (MeshRenderer mesh in meshes)
+        {
+            mesh.enabled = isAcktive;
         }
     }
 }
