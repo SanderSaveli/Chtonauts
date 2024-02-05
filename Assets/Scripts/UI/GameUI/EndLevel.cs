@@ -28,7 +28,9 @@ public class EndLevel : MonoBehaviour
     {
         result.text = "Победа";
         _animator.SetBool("open", true);
-        timeToComplete.text = time.ToString("2");
+        TimeSpan timeSpan = TimeSpan.FromSeconds(time);
+        string displayTime = timeSpan.ToString("mm':'ss");
+        timeToComplete.text = displayTime;
         restart.gameObject.SetActive(false);
     }
 
@@ -36,7 +38,9 @@ public class EndLevel : MonoBehaviour
     {
         result.text = "Поражение";
         _animator.SetBool("open", true);
-        timeToComplete.text = time.ToString("2");
+        TimeSpan timeSpan = TimeSpan.FromSeconds(time);
+        string displayTime = timeSpan.ToString("mm':'ss");
+        timeToComplete.text = displayTime;
         restart.gameObject.SetActive(true);
     }
 
