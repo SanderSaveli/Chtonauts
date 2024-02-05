@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -34,6 +35,12 @@ public sealed class Reseacher : MonoBehaviour
     {
         Health = newValue;
         OnHealthChanged?.Invoke(Health);
+    }
+
+    public void GetDamage(int value)
+    {
+        Mind -= value;
+        OnMindChanged?.Invoke(Mind);
     }
 
     public void OnCellDiscovered(FloorCell floorCell)

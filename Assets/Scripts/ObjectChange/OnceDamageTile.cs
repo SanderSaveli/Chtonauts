@@ -33,7 +33,7 @@ public class OnceDamageTile : DurationTile
         Collider[] colliders = Physics.OverlapBox(boxCenter, size / 2);
         foreach (Collider collider in colliders)
         {
-            if (collider.gameObject.TryGetComponent(out DamageTarget target))
+            if (collider.gameObject.TryGetComponent(out Reseacher target))
             {
                 target.GetDamage(ServiceLocator.Get<IDamageCalculator>().getDamage(TileType));
             }

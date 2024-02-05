@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GeometryChangeTile : DurationTile
 {
@@ -9,11 +11,19 @@ public class GeometryChangeTile : DurationTile
     private GameObject createdObject;
     public List<MeshRenderer> meshes;
     private SurfaceCell cell;
+    private NavMeshSurface surface;
+    private NavMeshObstacle obstacle;
 
     private void Start()
     {
         _durationCalculator = ServiceLocator.Get<IDurationCalculator>();
         cell = gameObject.GetComponent<SurfaceCell>();
+        surface = GameObject.FindObjectOfType<NavMeshSurface>();
+        obstacle = GetComponent<NavMeshObstacle>();
+        if(surface == null)
+        {
+            Debug.LogError("There is no NavMeshSurface on the floor");
+        }
     }
     public override bool ActivateTile()
     {
@@ -25,18 +35,16 @@ public class GeometryChangeTile : DurationTile
         StartCoroutine(WaitTimeAndDeactivation(duration));
         ChangeGeometry(false);
         IsChganged = true;
-        cell.State = CellState.IllusoryWall;
         return true;
     }
 
     protected void ChangeGeometry(bool isActive)
     {
-        EnableAllMashes(isActive);
         if (isActive)
         {
             if (createdObject != null)
             {
-                Destroy(createdObject);
+                DestroyImmediate(createdObject);
             }
         }
         else
@@ -46,6 +54,9 @@ public class GeometryChangeTile : DurationTile
                 createdObject = Instantiate(_changeTarget, transform.position, transform.rotation);
             }
         }
+        EnableAllMashes(isActive);
+        obstacle.enabled = isActive;
+        surface.BuildNavMesh();
     }
 
     public void EnableAllMashes(bool isAcktive)
@@ -58,7 +69,6 @@ public class GeometryChangeTile : DurationTile
 
     protected override void Deactivation()
     {
-        cell.State = CellState.None;
         ChangeGeometry(true);
     }
 }

@@ -26,7 +26,7 @@ public class CircleDamageTile : DurationTile
             Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
             foreach (Collider collider in colliders)
             {
-                if (collider.gameObject.TryGetComponent(out DamageTarget target))
+                if (collider.gameObject.TryGetComponent(out Reseacher target))
                 {
                     target.GetDamage(ServiceLocator.Get<IDamageCalculator>().getDamage(TileType));
                 }

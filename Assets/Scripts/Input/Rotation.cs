@@ -8,7 +8,6 @@ public class Rotation : MonoBehaviour
    public float MouseSens = 2.5f;
    public  float timer = 0;
 
-    // Update is called once per frame
     void Update()
     {
        if(Input.GetMouseButton(1))

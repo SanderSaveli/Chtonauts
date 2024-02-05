@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class FloorCell : SurfaceCell
 {
-    void Start()
+    private void Start()
     {
-        Ray ray = new Ray(transform.position + Vector3.down, Vector3.up * 10);
+        Ray ray = new Ray(transform.position, Vector3.up * 10);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
