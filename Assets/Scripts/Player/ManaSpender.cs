@@ -11,6 +11,7 @@ public class ManaSpender : MonoBehaviour
         _costCalculator = ServiceLocator.Get<IManaCostCalculator>();
         Debug.Log(_costCalculator.ToString());
         _manaService = ServiceLocator.Get<IManaService>();
+        
     }
 
     void Update()
@@ -34,9 +35,12 @@ public class ManaSpender : MonoBehaviour
     private void ActivateTile(InteractiveTile tile)
     {
         int changeCost = _costCalculator.getCost(tile.TileType);
-        if (_manaService.TrySpendMana(changeCost))
+        if (tile.isAvailable)
         {
-            tile.ActivateTile();
+            if (_manaService.TrySpendMana(changeCost))
+            {
+                tile.ActivateTile();
+            }
         }
     }
 }

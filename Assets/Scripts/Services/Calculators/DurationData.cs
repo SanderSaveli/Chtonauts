@@ -4,5 +4,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ChangeDurationData", menuName = "Data/Change Duration Data")]
 public class DurationData : ScriptableObject
 {
-    public List<TileDurationEntry> defaultDurations;
+    public List<FloatEntry> defaultDurations;
 }

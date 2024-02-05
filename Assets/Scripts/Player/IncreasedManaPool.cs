@@ -13,13 +13,11 @@ public class IncreasedManaPool : MonoBehaviour, IManaPool
     {
         if (AvailableMana < count)
         {
-            Debug.Log(CurrentMana);
             return false;
         }
         else
         {
             CurrentMana -= count;
-            Debug.Log(CurrentMana);
             return true;
         }
     }

@@ -8,7 +8,5 @@ public class GameEntryPoint : MonoBehaviour
     void Start()
     {
         registrator.RegistrateAllServices();
-        Debug.Log("gg");
-
     }
 }

@@ -1,6 +1,6 @@
 [System.Serializable]
-public class CostEntry
+public class IntEntry
 {
     public TileType tileType;
-    public float changeCost;
+    public int value;
 }

@@ -1,15 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GeometryChangeTile : InteractiveTile
+public class GeometryChangeTile : DurationTile
 {
-    public float ChangeTimeLeft { get; protected set; }
 
     [SerializeField] private GameObject _changeTarget;
 
     private GameObject createdObject;
-    private IDurationCalculator _durationCalculator;
     public List<MeshRenderer> meshes;
     private SurfaceCell cell;
 
@@ -22,34 +19,14 @@ public class GeometryChangeTile : InteractiveTile
     {
         float duration = _durationCalculator.getDuration(TileType);
         if (IsChganged)
-        {   
+        {
             return false;
         }
-        StartCoroutine(WaitTimeAndChangeBack(duration));
+        StartCoroutine(WaitTimeAndDeactivation(duration));
         ChangeGeometry(false);
         IsChganged = true;
         cell.cellType = CellType.IllusoryWall;
         return true;
-
-    }
-
-    IEnumerator WaitTimeAndChangeBack(float tinme)
-    {
-        ChangeTimeLeft = tinme;
-        while (ChangeTimeLeft > 0)
-        {
-            ChangeTimeLeft -= Time.deltaTime;
-            yield return null;
-        }
-        ChangeBack();
-    }
-
-    protected void ChangeBack()
-    {
-        ChangeTimeLeft = 0;
-        cell.cellType = CellType.Empty;
-        IsChganged = false;
-        ChangeGeometry(true);
     }
 
     protected void ChangeGeometry(bool isActive)
@@ -77,5 +54,11 @@ public class GeometryChangeTile : InteractiveTile
         {
             mesh.enabled = isAcktive;
         }
+    }
+
+    protected override void Deactivation()
+    {
+        cell.cellType = CellType.Empty;
+        ChangeGeometry(true);
     }
 }

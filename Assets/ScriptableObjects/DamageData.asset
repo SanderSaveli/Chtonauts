@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22f78ab4fe687e34c9c20288cbef0d73, type: 3}
-  m_Name: ChangeDurationData
+  m_Script: {fileID: 11500000, guid: 5b37afeb258a92a49a0c3f1488f6766d, type: 3}
+  m_Name: DamageData
   m_EditorClassIdentifier: 
-  defaultDurations:
+  defaultDamage:
   - tileType: 0
-    value: 6
+    value: 10
   - tileType: 1
-    value: 2
+    value: 20
   - tileType: 2
-    value: 8
+    value: 2

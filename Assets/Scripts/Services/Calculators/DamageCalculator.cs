@@ -1,32 +1,31 @@
 using System.Collections.Generic;
 
-public class ManaCostCalculator : Calculator, IManaCostCalculator
+public class DamageCalculator : Calculator, IDamageCalculator
 {
-    public ManaCostCalculator(ManaCostData manaCostData)
-    { 
-        defaultCost = manaCostData.defaultCost;
+    public DamageCalculator(DamageCalculatorData durationData)
+    {
+        _defaultDamage = durationData.defaultDamage;
     }
 
-    private List<IntEntry> defaultCost;
-    public int getCost(TileType tileType)
+    private List<IntEntry> _defaultDamage;
+    public int getDamage(TileType tileType)
     {
-        IntEntry entry = defaultCost.Find(item => item.tileType == tileType);
+        IntEntry entry = _defaultDamage.Find(item => item.tileType == tileType);
 
         if (entry != null)
         {
-            return (int)(_modificatorMap.TryGetValue(tileType, out float modificator) ? 
-                entry.value + modificator + _modificatorForAll : 
-                entry.value + _modificatorForAll);
+            return (_modificatorMap.TryGetValue(tileType, out float modificator) ? entry.value + (int)modificator : entry.value);
         }
         return 0;
     }
 
     public void StartWork()
-    {   }
+    {
+    }
 
     public void EndWork()
-    {   }
-
+    {
+    }
     public void increaseModificator(TileType tileType, int costDecrease)
     {
         base.increaseModificator(tileType, costDecrease);

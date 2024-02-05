@@ -8,14 +8,14 @@ public class DurationCalculator : Calculator, IDurationCalculator
         _defaultDurations = durationData.defaultDurations;
     }
 
-    private List<TileDurationEntry> _defaultDurations;
+    private List<FloatEntry> _defaultDurations;
     public float getDuration(TileType tileType)
     {
-        TileDurationEntry entry = _defaultDurations.Find(item => item.tileType == tileType);
+        FloatEntry entry = _defaultDurations.Find(item => item.tileType == tileType);
 
         if (entry != null)
         {
-            return (_modificatorMap.TryGetValue(tileType, out float modificator) ? entry.changeDuration + modificator : entry.changeDuration);
+            return (_modificatorMap.TryGetValue(tileType, out float modificator) ? entry.value + modificator : entry.value);
         }
         return 0;
     }

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultCost:
   - tileType: 0
-    changeCost: 3
+    value: 5
   - tileType: 1
-    changeCost: 3
+    value: 3
   - tileType: 2
-    changeCost: 3
+    value: 7

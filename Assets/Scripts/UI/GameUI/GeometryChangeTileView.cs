@@ -4,24 +4,33 @@ using UnityEngine.UI;
 
 public class GeometryChangeTileView : MonoBehaviour
 {
-    private GeometryChangeTile targetTile;
+    private DurationTile targetTile;
     public Image progressBar;
     public ParticleSystem particleSystem;
     private float duration;
-    private void Start()
+    private void OnEnable()
     {
-        targetTile = gameObject.GetComponentInParent<GeometryChangeTile>();
-        targetTile.OnTileChanged += TileChange;
+        targetTile = gameObject.GetComponentInParent<DurationTile>();
+        targetTile.OnTileActive += TileActive;
+        targetTile.OnTileDeactiveted += TileDeactiveted;
+    }
+    private void OnDisable()
+    {
+        targetTile.OnTileActive += TileActive;
+        targetTile.OnTileDeactiveted += TileDeactiveted;
     }
 
-    private void TileChange(bool isCghangeToTarget)
+    protected virtual void TileActive()
     {
-        if (isCghangeToTarget)
-        {
-            duration = targetTile.ChangeTimeLeft;
-            StartCoroutine(ChangeProgressBar());
-            particleSystem.Play();
-        }
+        duration = targetTile.activationTimeLeft;
+        StartCoroutine(ChangeProgressBar());
+        particleSystem.Play();
+    }
+    protected virtual void TileDeactiveted()
+    {
+        duration = targetTile.activationTimeLeft;
+        StartCoroutine(ChangeProgressBar());
+        particleSystem.Play();
     }
 
     private IEnumerator ChangeProgressBar()
@@ -29,7 +38,7 @@ public class GeometryChangeTileView : MonoBehaviour
         progressBar.enabled = true;
         while (targetTile.IsChganged)
         {
-            progressBar.fillAmount = targetTile.ChangeTimeLeft / duration;
+            progressBar.fillAmount = targetTile.activationTimeLeft / duration;
             yield return null;
         }
         particleSystem.Play();
