@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public abstract class AnimatedBar : MonoBehaviour
 {
-    public int maxBarValue = 100; // Максимальное значение шкалы
+    public int maxBarValue;
     public float currentBarValue { get; private set; } // Текущее значение шкалы
     protected float _currentBarValue; // Внутреннее значение шкалы, используемое для анимации
 
@@ -15,11 +15,6 @@ public abstract class AnimatedBar : MonoBehaviour
 
     private void Start()
     {
-        // Устанавливаем начальное значение currentBarValue равным maxBarValue
-        currentBarValue = maxBarValue;
-        _currentBarValue = maxBarValue;
-        bar.fillAmount = 1f; // Начальное заполнение шкалы
-        substrateBar.fillAmount = 1f; // Начальное заполнение подложки шкалы
         UpdateBarText(); // Обновляем текст шкалы
     }
 

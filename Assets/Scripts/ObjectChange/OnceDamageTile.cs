@@ -9,7 +9,7 @@ public class OnceDamageTile : DurationTile
 
     private void OnEnable()
     {
-        boxCenter = transform.TransformDirection(transform.position) + direction;
+        boxCenter = transform.position + transform.forward;
     }
 
     public override bool ActivateTile()
@@ -42,7 +42,7 @@ public class OnceDamageTile : DurationTile
 
     private void OnDrawGizmos()
     {
-        boxCenter = transform.TransformDirection(transform.position) + direction;
+        boxCenter = transform.position + transform.forward;
         Gizmos.DrawCube(boxCenter, size);
     }
 }

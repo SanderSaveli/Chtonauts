@@ -40,6 +40,7 @@ public sealed class Reseacher : MonoBehaviour
     public void GetDamage(int value)
     {
         Mind -= value;
+        Debug.Log(Mind);
         OnMindChanged?.Invoke(Mind);
     }
 

@@ -1,10 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.PlayerSettings;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class MoveController : MonoBehaviour
@@ -25,8 +22,11 @@ public class MoveController : MonoBehaviour
     private Vector3 CurrentDestonation;
     private MoveToTarget toTarget;
     private ExploreMove exploreMove;
-    bool isAcktive;
-    bool isIdle;
+    private bool isAcktive;
+    private bool isIdle;
+    public bool hasAtrifact;
+
+    public Transform leaveTile;
 
     private float elapsedTime = 0;
 
@@ -43,7 +43,7 @@ public class MoveController : MonoBehaviour
     {
         if (!agent.pathPending && agent.remainingDistance < handDistance)
         {
-            if(isAcktive)
+            if (isAcktive)
             {
                 CameToPosition();
             }
@@ -62,8 +62,15 @@ public class MoveController : MonoBehaviour
     {
         if (!isIdle)
         {
-            CurrentDestonation = exploreMove.GetDestination();
-            toTarget.StartMove(CurrentDestonation);
+            if (hasAtrifact)
+            {
+                toTarget.StartMove(leaveTile.position);
+            }
+            else
+            {
+                CurrentDestonation = exploreMove.GetDestination();
+                toTarget.StartMove(CurrentDestonation);
+            }
         }
         else
         {
@@ -89,13 +96,13 @@ public class MoveController : MonoBehaviour
 
     private void TimerUpdate()
     {
-        if(CurrentDestonation== Vector3.zero)
+        if (CurrentDestonation == Vector3.zero)
         {
             isAcktive = false;
         }
         VisiteLocation();
         RememberLocation();
-        if (!CheckPathToTarget(CurrentDestonation)) 
+        if (!CheckPathToTarget(CurrentDestonation))
         {
             IdleMove();
         }
@@ -116,7 +123,7 @@ public class MoveController : MonoBehaviour
 
     private void RememberLocation()
     {
-        Collider[]  colliders = Physics.OverlapSphere(transform.position, rememberRadius);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, rememberRadius);
         foreach (Collider col in colliders)
         {
             if (col.TryGetComponent(out FloorCell floorCell))
@@ -126,7 +133,17 @@ public class MoveController : MonoBehaviour
                     rememberedLocations.Push(floorCell.transform.position);
                 }
             }
+            if (col.TryGetComponent<Artefact>(out Artefact artefact))
+            {
+                CurrentDestonation = artefact.transform.position;
+                toTarget.StartMove(CurrentDestonation);
+            }
         }
+    }
+
+    private void MoveToArtefact()
+    {
+        
     }
 
     private void IdleMove()
@@ -139,14 +156,22 @@ public class MoveController : MonoBehaviour
 
     private IEnumerator WaitAndExplore()
     {
-        Debug.Log("Wait...");
-        isIdle = true;
-        CameToPosition  ();
-        yield return new WaitForSeconds(6);
-        if (isAcktive)
+        if(!hasAtrifact)
         {
-            isIdle = false;
+            Debug.Log("Wait...");
+            isIdle = true;
             CameToPosition();
+            yield return new WaitForSeconds(6);
+            if (isAcktive)
+            {
+                isIdle = false;
+                CameToPosition();
+            }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawCube(leaveTile.position, Vector3.one *2);
     }
 }

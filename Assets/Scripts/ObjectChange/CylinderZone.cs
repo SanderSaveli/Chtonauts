@@ -15,6 +15,7 @@ public class CylinderZone : MonoBehaviour
 
     public void DrawCircle(float radius)
     {
+        radius *= 3;
         this.radius = radius;
         float scaledRadius = radius * Mathf.Max(transform.lossyScale.x, transform.lossyScale.z);
 

@@ -20,6 +20,11 @@ public class GameManaService : IManaService
     {
     }
 
+    public void increaseManaReload(float amount)
+    {
+        pool.ManaPerSecondIncrease += amount;
+    }
+
     public void StartWork()
     {
     }

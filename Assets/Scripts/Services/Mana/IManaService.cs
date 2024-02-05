@@ -5,4 +5,6 @@ public interface IManaService : IService
     public int maxMana { get; }
 
     public bool TrySpendMana(int count);
+
+    public void increaseManaReload(float amount);
 }

@@ -239,9 +239,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4683669308469848369, guid: 4b052ef42b731c04d89d47911f30ceb0, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4683669308469848369, guid: 4b052ef42b731c04d89d47911f30ceb0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e223cea67dc49954ea244ffca57ecef3, type: 2}
+      objectReference: {fileID: 2247829719408462640, guid: 4b052ef42b731c04d89d47911f30ceb0, type: 3}
+    - target: {fileID: -4683669308469848369, guid: 4b052ef42b731c04d89d47911f30ceb0, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 106f3ff43a17d4967a2b64c7a92e49ec, type: 2}
+    - target: {fileID: -4683669308469848369, guid: 4b052ef42b731c04d89d47911f30ceb0, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 311313efa011949e98b6761d652ad13c, type: 2}
     - target: {fileID: 919132149155446097, guid: 4b052ef42b731c04d89d47911f30ceb0, type: 3}
       propertyPath: m_Name
       value: Column
@@ -302,7 +314,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 5, z: 2}
+  m_Size: {x: 3, y: 9, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5062690154871500257
 MonoBehaviour:
@@ -317,7 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 2
-  radius: 10
+  radius: 5
   interval: 0.5
 --- !u!4 &8051606135189588652 stripped
 Transform:

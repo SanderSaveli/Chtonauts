@@ -10,23 +10,6 @@ public class Rotation : MonoBehaviour
 
     void Start()
     {
-        Renderer[] renderers = GetComponentsInChildren<Renderer>();
-
-        // Если есть рендереры, вычисляем центр их объединения
-        if (renderers.Length > 0)
-        {
-            Bounds bounds = renderers[0].bounds;
-            for (int i = 1; i < renderers.Length; i++)
-            {
-                bounds.Encapsulate(renderers[i].bounds);
-            }
-            center = bounds.center;
-        }
-        else
-        {
-            // Если рендереров нет, используем позицию объекта
-            center = transform.position;
-        }
     }
 
     void Update()
@@ -36,6 +19,15 @@ public class Rotation : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer <= 0)
             {
+                Vector3 screenCenter = new Vector3(0.5f * Screen.width, 0.5f * Screen.height, 0f);
+
+                // Указываем расстояние от центра экрана
+                float distanceFromCenter = 5f;
+
+                // Создаем вектор, представляющий точку на расстоянии от центра экрана
+                Vector3 pointFromCenter = screenCenter + new Vector3(0f, 0f, distanceFromCenter);
+
+                center = Camera.main.ScreenToWorldPoint(pointFromCenter);
                 float hor = Input.GetAxis("Mouse X");
                 // float ver = Input.GetAxis("Mouse Y"); // Эта строка больше не нужна
                 transform.RotateAround(center, Vector3.up, hor * MouseSens * 300 * Time.deltaTime);

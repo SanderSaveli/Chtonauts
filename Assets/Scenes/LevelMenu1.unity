@@ -2153,6 +2153,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 970750829}
     m_Modifications:
+    - target: {fileID: 531649671036701076, guid: 21f725028fcd1104a897c5cae4430762, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 796d2e28838c3604fbcc8ced74d1e0de, type: 3}
     - target: {fileID: 7388939817172570819, guid: 21f725028fcd1104a897c5cae4430762, type: 3}
       propertyPath: m_Name
       value: LevelCard
