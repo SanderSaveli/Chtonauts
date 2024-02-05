@@ -55,7 +55,7 @@ public class GeometryChangeTile : DurationTile
             }
         }
         EnableAllMashes(isActive);
-        obstacle.enabled = !isActive;
+        obstacle.enabled = isActive;
         surface.BuildNavMesh();
     }
 

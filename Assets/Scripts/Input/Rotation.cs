@@ -10,6 +10,7 @@ public class Rotation : MonoBehaviour
 
     void Start()
     {
+        // Получаем все рендереры дочерних объектов
         Renderer[] renderers = GetComponentsInChildren<Renderer>();
 
         // Если есть рендереры, вычисляем центр их объединения
