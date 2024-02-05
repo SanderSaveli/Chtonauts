@@ -7,12 +7,12 @@ public class ExploreMove
     public float explorationRadius;
     public float avoidanceRadius;
 
-    private NavMeshAgent agent;
+    private Transform agent;
     private HashSet<Vector3> visitedLocations = new HashSet<Vector3>();
     private Stack<Vector3> rememberedLocations;
-    private Vector3 position => agent.transform.position;
+    private Vector3 position => agent.position;
 
-    public ExploreMove(NavMeshAgent agent, HashSet<Vector3> visitedLocations, Stack<Vector3> rememberedLocations, float explorationRadius, float avoidanceRadius)
+    public ExploreMove(Transform agent, HashSet<Vector3> visitedLocations, Stack<Vector3> rememberedLocations, float explorationRadius, float avoidanceRadius)
     {
         this.agent = agent;
         this.visitedLocations = visitedLocations;
@@ -20,19 +20,12 @@ public class ExploreMove
         this.explorationRadius = explorationRadius;
         this.rememberedLocations = rememberedLocations;
     }
-    public void StartMove()
-    {
-        SetRandomDestination();
-    }
-
-    void SetRandomDestination()
+    public Vector3 GetDestination()
     {
         Vector3 randomDirection = Random.insideUnitSphere * explorationRadius;
         randomDirection += position;
 
-        Vector3 targetLocation = FindNearestUnvisitedLocation(randomDirection);
-
-        agent.SetDestination(targetLocation);
+        return FindNearestUnvisitedLocation(randomDirection);
     }
 
     Vector3 FindNearestUnvisitedLocation(Vector3 targetLocation)
@@ -55,7 +48,8 @@ public class ExploreMove
                         return nearestUnvisitedLocation;
                     }
                 }
-                return agent.transform.position;
+                Debug.LogWarning("all location explorered");
+                return Vector3.zero;
             }
             NavMesh.SamplePosition(Random.insideUnitSphere * explorationRadius + position, out hit, explorationRadius, NavMesh.AllAreas);
             nearestUnvisitedLocation = hit.position;
@@ -73,5 +67,36 @@ public class ExploreMove
             }
         }
         return false;
+    }
+
+    public Vector3 GetRandomDestination()
+    {
+        NavMeshHit hit;
+        Vector3 randomPoint;
+
+        do
+        {
+            Vector3 randomDirection = Random.insideUnitSphere * 10f; // Радиус 10, можно изменить
+            randomDirection += position;
+
+            // Найти ближайшую непосещенную локацию в пределах NavMesh
+            if (NavMesh.SamplePosition(randomDirection, out hit, 10f, NavMesh.AllAreas))
+            {
+                randomPoint = hit.position;
+            }
+            else
+            {
+                randomPoint = position; // В случае неудачи используем текущую позицию
+            }
+        } while (!IsPointReachable(randomPoint));
+
+        return randomPoint;
+    }
+
+    bool IsPointReachable(Vector3 point)
+    {
+        NavMeshPath path = new NavMeshPath();
+        agent.GetComponent<NavMeshAgent>().CalculatePath(point, path);
+        return path.status == NavMeshPathStatus.PathComplete;
     }
 }
