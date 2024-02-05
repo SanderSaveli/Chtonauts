@@ -11,7 +11,7 @@ public class FloorCell : SurfaceCell
             GameObject clickedObject = hit.collider.gameObject;
             if (clickedObject.TryGetComponent(out Wall wall))
             {
-                cellType = CellType.Wall;
+                State = CellState.Wall;
                 if (gameObject.TryGetComponent(out Collider col))
                 {
                     col.enabled = false;
@@ -22,7 +22,7 @@ public class FloorCell : SurfaceCell
 
     private void OnDrawGizmos()
     {
-        if (cellType == CellType.Empty)
+        if (State == CellState.None)
         {
             Gizmos.color = Color.white;
             Gizmos.DrawCube(transform.position, new Vector3(0.1f, 0.1f, 0.1f));

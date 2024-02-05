@@ -1,6 +1,6 @@
-public enum CellType
+public enum CellState
 {
-    Empty,
+    None,
     IllusoryWall,
     AlluringLight,
     Wall

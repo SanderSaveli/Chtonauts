@@ -25,7 +25,7 @@ public class GeometryChangeTile : DurationTile
         StartCoroutine(WaitTimeAndDeactivation(duration));
         ChangeGeometry(false);
         IsChganged = true;
-        cell.cellType = CellType.IllusoryWall;
+        cell.State = CellState.IllusoryWall;
         return true;
     }
 
@@ -58,7 +58,7 @@ public class GeometryChangeTile : DurationTile
 
     protected override void Deactivation()
     {
-        cell.cellType = CellType.Empty;
+        cell.State = CellState.None;
         ChangeGeometry(true);
     }
 }
