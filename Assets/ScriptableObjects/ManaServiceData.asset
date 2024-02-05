@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e8fbe5eb8498c43a0b0c379b08fb3f, type: 3}
   m_Name: ManaServiceData
   m_EditorClassIdentifier: 
-  manaIncreasePerSecond: 0.5
+  manaIncreasePerSecond: 2
   startMana: 10
-  maxMana: 10
+  maxMana: 100
