@@ -12,7 +12,8 @@ public class PriceViewController : MonoBehaviour
         targetTile = GetComponentInParent<GeometryChangeTile>();
         if (targetTile != null)
         {
-            targetTile.OnTileChanged += OnTileChanged;
+            targetTile.OnTileActive += DeacktivatePrice;
+            targetTile.OnTileDeactiveted += AcktivatePrice;
             priceText.text = price.ToString();
             priceText.enabled = true; // Начальное состояние - текст отображается
         }
@@ -30,10 +31,16 @@ public class PriceViewController : MonoBehaviour
         priceText.enabled = false;
     }
 
-    private void OnTileChanged(bool isChangeToTarget)
+    private void DeacktivatePrice()
     {
         // Если блок изменяется, цены не отображаются, иначе - отображаются
-        priceText.enabled = !isChangeToTarget;
+        priceText.enabled = false;
+    }
+
+    private void AcktivatePrice()
+    {
+        // Если блок изменяется, цены не отображаются, иначе - отображаются
+        priceText.enabled = true;
     }
 
     private void OnDestroy()
@@ -41,7 +48,8 @@ public class PriceViewController : MonoBehaviour
         // Отписываемся от события при уничтожении объекта
         if (targetTile != null)
         {
-            targetTile.OnTileChanged -= OnTileChanged;
+            targetTile.OnTileActive -= DeacktivatePrice;
+            targetTile.OnTileDeactiveted -= AcktivatePrice;
         }
     }
 }
