@@ -135,7 +135,7 @@ public class MoveController : MonoBehaviour
             }
             if (col.TryGetComponent<Artefact>(out Artefact artefact))
             {
-                CurrentDestonation = artefact.transform.position;
+                // CurrentDestonation = artefact.transform.position;
                 toTarget.StartMove(CurrentDestonation);
             }
         }

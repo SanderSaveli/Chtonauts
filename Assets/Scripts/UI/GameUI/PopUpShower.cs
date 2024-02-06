@@ -16,20 +16,24 @@ public class PopUpShower : MonoBehaviour
     public Button btn;
     public TextMeshProUGUI btnText;
     private Animator _animator;
+    private bool _isTutorial = true;
     private void Start()
     {
         _popUp = popUpPrefab.GetComponent<PopUp>();
         btn.onClick.AddListener(ShowPopUps);
         btnText.text = "Дальше";
         _animator = GetComponent<Animator>();
+        Time.timeScale = 0;
         if (index == 0)
         {
             _animator.SetBool("open", true);
+            ShowPopUps();
         }
     }
 
     public void ShowPopUps()
     {
+        
         if (index < PopUps.Count)
         {
             PopUpData currentData = PopUps[index];
@@ -47,12 +51,14 @@ public class PopUpShower : MonoBehaviour
         {
             btnText.text = "Закрыть";
             btn.onClick.AddListener(ClosePopUp);
+            
         }
         ShowPopUps();
     }
 
     private void ClosePopUp()
     {
+        Time.timeScale = 1;
         _animator.SetBool("open", false);
         _animator.SetBool("close", true);
     }

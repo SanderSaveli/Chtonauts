@@ -7,14 +7,17 @@ using UnityEngine.UI;
 
 public class PopUp : MonoBehaviour
 {
-    public TMP_Text Title;
+    public Text Title;
     public Image Image;
-    public TMP_Text Text;
+    public Text mainText;
+    public Font customFont;
 
+    
     public void showPopUp(PopUpData data)
     {
+        
         Title.text = data.Title;
         Image.sprite = data.Sprite;
-        Text.text = data.Text;
+        mainText.text = data.Text;
     }
 }

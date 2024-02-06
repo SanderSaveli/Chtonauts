@@ -8,6 +8,14 @@ public class PauseMenu : MonoBehaviour
 {
     private bool opened = false;
     public GameObject pauseMenu;
+    public AudioClip click;
+    public AudioSource audioSource;
+    private Animator _animator;
+
+    private void Start()
+    {
+        _animator = GetComponent<Animator>();
+    }
 
     private void Update()
     {
@@ -15,11 +23,16 @@ public class PauseMenu : MonoBehaviour
         {
             Pause();
         }
+        if (Input.GetMouseButtonDown(0))
+        {
+            audioSource.PlayOneShot(click);
+        }
        
     }
     
     public void Resume()
     {
+        _animator.SetBool("open", false);
         Time.timeScale = 1;
     }
 
@@ -31,18 +44,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-        opened = !opened;
-
-        if (opened)
-        {
-            pauseMenu.SetActive(true); // Показываем меню паузы
-            Time.timeScale = 0f; // Останавливаем игровое время
-        }
-        else
-        {
-            pauseMenu.SetActive(false); // Скрываем меню паузы
-            Time.timeScale = 1f; // Возобновляем игровое время
-        }
+        _animator.SetBool("open", true);
+        Time.timeScale = 0;
     }
     
 }

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -12,32 +9,61 @@ public class SettingsPanel : MonoBehaviour
     public Text overallValue, musicValue, effectsValue;
     public GameObject settingsTab;
     private Animator _animator;
+    public AudioClip click;
+    public AudioSource audioSource;
 
     private void Start()
     {
+        // Установка начальных значений слайдеров
+        overall.value = PlayerPrefs.GetFloat("MasterVolume", 0f);
+        music.value = PlayerPrefs.GetFloat("MusicVolume", 0f);
+        effects.value = PlayerPrefs.GetFloat("EffectsVolume", 0f);
+
+        // Установка начальных значений в AudioMixer
         audioMixer.SetFloat("MasterVolume", overall.value);
         audioMixer.SetFloat("MusicVolume", music.value);
+        audioMixer.SetFloat("EffectsVolume", effects.value);
+
         _animator = settingsTab.GetComponent<Animator>();
+
+        // Обновление текстовых полей с текущими значениями слайдеров
+        UpdateSliderValues();
     }
 
     private void Update()
     {
-        overallValue.text = (overall.value + 100) + "%";
-        musicValue.text = (music.value + 100)  + "%";
-        effectsValue.text = (effects.value + 100) + "%";
+        // Обновление текстовых полей с текущими значениями слайдеров
+        UpdateSliderValues();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            audioSource.PlayOneShot(click);
+        }
     }
 
-    public void overallSoundChange(float value)
+    private void UpdateSliderValues()
     {
-        audioMixer.SetFloat("MasterVolume", value);
+        overallValue.text = (overall.value + 80) + "%";
+        musicValue.text = (music.value + 80) + "%";
+        effectsValue.text = (effects.value + 80) + "%";
     }
-    public void musicSoundChange(float value)
+
+    public void overallSoundChange()
     {
-        audioMixer.SetFloat("MusicVolume", value);
+        audioMixer.SetFloat("MasterVolume", overall.value);
+        PlayerPrefs.SetFloat("MasterVolume", overall.value);
     }
-    public void effectsSoundChange(float value)
+
+    public void musicSoundChange()
     {
-        
+        audioMixer.SetFloat("MusicVolume", music.value);
+        PlayerPrefs.SetFloat("MusicVolume", music.value);
+    }
+
+    public void effectsSoundChange()
+    {
+        audioMixer.SetFloat("EffectsVolume", effects.value);
+        PlayerPrefs.SetFloat("EffectsVolume", effects.value);
     }
 
     public void openCloseSettingsTab()
@@ -53,5 +79,4 @@ public class SettingsPanel : MonoBehaviour
             _animator.SetBool("open", false);
         }
     }
-    
 }

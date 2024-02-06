@@ -8,7 +8,8 @@ using UnityEngine.UI;
 public class LevelMenuLoader : MonoBehaviour
 {
     public List<Button> levels;
-    public Button home;
+    public AudioClip click;
+    public AudioSource audioSource;
 
     private void Start()
     {
@@ -19,9 +20,17 @@ public class LevelMenuLoader : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            audioSource.PlayOneShot(click);
+        }
+    }
+
     public void LoadCurrentScene(int levelIndex)
     {
-        SceneManager.LoadScene(levelIndex + 4);
+        SceneManager.LoadScene(levelIndex + 2);
     }
 
     public void Home()
