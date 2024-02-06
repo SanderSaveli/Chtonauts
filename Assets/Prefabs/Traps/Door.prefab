@@ -92,6 +92,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7213621472307427723, guid: 4b052ef42b731c04d89d47911f30ceb0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9b2c42c9e3f348d49a6cdef2f8eecfd9, type: 2}
     - target: {fileID: -4683669308469848369, guid: 4b052ef42b731c04d89d47911f30ceb0, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -104,6 +108,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Column
       objectReference: {fileID: 0}
+    - target: {fileID: 2661215666156734702, guid: 4b052ef42b731c04d89d47911f30ceb0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 71d90375f8780d346b4ae8a28883f803, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -182,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28fcb2a437c31194190ba70ed3febba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellType: 0
+  State: 0
 --- !u!23 &2294505540405257851 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7213621472307427723, guid: 4b052ef42b731c04d89d47911f30ceb0, type: 3}

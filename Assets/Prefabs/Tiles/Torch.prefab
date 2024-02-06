@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: LightsModule.intensityCurve.scalar
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1260497222509837149, guid: edce05a187db8ab419db45dae16f8b59, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 154ae70fea36e3444a002c7f03b5462c, type: 2}
     - target: {fileID: 3314161422652055601, guid: edce05a187db8ab419db45dae16f8b59, type: 3}
       propertyPath: m_LocalScale.x
       value: 30
