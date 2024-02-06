@@ -34,9 +34,12 @@ public class GeometryChangeTileView : MonoBehaviour
     }
     protected virtual void TileDeactiveted()
     {
-        duration = targetTile.activationTimeLeft;
-        StartCoroutine(ChangeProgressBar());
-        particleSystem.Play();
+        if(targetTile.TileType != TileType.trap)
+        {
+            duration = targetTile.activationTimeLeft;
+            StartCoroutine(ChangeProgressBar());
+            particleSystem.Play();
+        }
     }
 
     private IEnumerator ChangeProgressBar()
@@ -47,7 +50,6 @@ public class GeometryChangeTileView : MonoBehaviour
             progressBar.fillAmount = targetTile.activationTimeLeft / duration;
             yield return null;
         }
-        particleSystem.Play();
         progressBar.enabled = false;
     }
 }

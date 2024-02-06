@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestLoadScenes/New Scene 6.unity
     guid: cd09584a844eaab49a239ae3d2d20350
+  - enabled: 1
+    path: Assets/Scenes/GameUI.unity
+    guid: 515924034ea53b247921b40b12683f84
   m_configObjects: {}
