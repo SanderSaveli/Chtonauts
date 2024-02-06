@@ -156,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressBar: {fileID: 8034630233281617962}
   particleSystem: {fileID: 5299989974496211564}
+  price: {fileID: 8002594515167116722}
   cylinderZone: {fileID: 5278402795875320733}
 --- !u!224 &4081275584154422902 stripped
 RectTransform:
@@ -167,6 +168,17 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 742200301246347360, guid: 1ae53d879d6d0934c9f4864aec5fc748, type: 3}
   m_PrefabInstance: {fileID: 4882337337260083724}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8002594515167116722 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3228912428826097598, guid: 1ae53d879d6d0934c9f4864aec5fc748, type: 3}
+  m_PrefabInstance: {fileID: 4882337337260083724}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8034630233281617962 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3188889730416568870, guid: 1ae53d879d6d0934c9f4864aec5fc748, type: 3}
@@ -240,7 +252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4683669308469848369, guid: 4b052ef42b731c04d89d47911f30ceb0, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4683669308469848369, guid: 4b052ef42b731c04d89d47911f30ceb0, type: 3}
       propertyPath: m_Materials.Array.data[0]

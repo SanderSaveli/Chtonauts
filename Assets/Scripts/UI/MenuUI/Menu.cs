@@ -9,7 +9,6 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
-    //перекинуть в другой скрипт, это не настройки блять 
     public void exit()
     {
         Application.Quit();

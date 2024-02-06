@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public class GeometryChangeTileView : MonoBehaviour
     public Image progressBar;
     public ParticleSystem particleSystem;
     private float duration;
+    public TMP_Text price;
     private void OnEnable()
     {
         targetTile = gameObject.GetComponentInParent<DurationTile>();
@@ -20,6 +22,10 @@ public class GeometryChangeTileView : MonoBehaviour
         targetTile.OnTileDeactiveted += TileDeactiveted;
     }
 
+    public void Start()
+    {
+        price.text = ServiceLocator.Get<IManaCostCalculator>().getCost(targetTile.TileType).ToString();
+    }
     protected virtual void TileActive()
     {
         duration = targetTile.activationTimeLeft;

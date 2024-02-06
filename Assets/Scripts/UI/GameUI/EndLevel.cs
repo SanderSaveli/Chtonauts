@@ -26,6 +26,7 @@ public class EndLevel : MonoBehaviour
 
     public void WinLevel()
     {
+        Time.timeScale = 0f;
         result.text = "Победа";
         _animator.SetBool("open", true);
         TimeSpan timeSpan = TimeSpan.FromSeconds(time);
@@ -36,6 +37,7 @@ public class EndLevel : MonoBehaviour
 
     public void LoseLevel()
     {
+        Time.timeScale = 0f;
         result.text = "Поражение";
         _animator.SetBool("open", true);
         TimeSpan timeSpan = TimeSpan.FromSeconds(time);

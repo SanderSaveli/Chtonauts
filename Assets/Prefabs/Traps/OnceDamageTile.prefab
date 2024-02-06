@@ -158,7 +158,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 5, z: 2}
+  m_Size: {x: 3, y: 9, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5790542389039277412
 MonoBehaviour:
@@ -183,6 +183,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1227913945659589631}
     m_Modifications:
+    - target: {fileID: -602966363077935570, guid: 1ae53d879d6d0934c9f4864aec5fc748, type: 3}
+      propertyPath: price
+      value: 
+      objectReference: {fileID: 8918374297951609875}
     - target: {fileID: 742200301246347360, guid: 1ae53d879d6d0934c9f4864aec5fc748, type: 3}
       propertyPath: lengthInSec
       value: 1
@@ -218,6 +222,10 @@ PrefabInstance:
     - target: {fileID: 742200301246347360, guid: 1ae53d879d6d0934c9f4864aec5fc748, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
       value: 0.5966007
+      objectReference: {fileID: 0}
+    - target: {fileID: 1623700051174034517, guid: 1ae53d879d6d0934c9f4864aec5fc748, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4629936875535141626, guid: 1ae53d879d6d0934c9f4864aec5fc748, type: 3}
       propertyPath: m_LocalPosition.z
@@ -341,3 +349,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8890687812534027386, guid: 1ae53d879d6d0934c9f4864aec5fc748, type: 3}
   m_PrefabInstance: {fileID: 6272116334442894253}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8918374297951609875 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3228912428826097598, guid: 1ae53d879d6d0934c9f4864aec5fc748, type: 3}
+  m_PrefabInstance: {fileID: 6272116334442894253}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -8,7 +8,8 @@ public class LeaveTile : MonoBehaviour
         {
             if (component.hasAtrifact)
             {
-                Debug.Log("Explorrer Win!");
+                Debug.Log("Explorer win");
+                GameObject.FindObjectOfType<EndLevel>().LoseLevel();
             }
         }
     }

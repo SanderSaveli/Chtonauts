@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -40,7 +38,10 @@ public sealed class Reseacher : MonoBehaviour
     public void GetDamage(int value)
     {
         Mind -= value;
-        Debug.Log(Mind);
+        if(Mind <= 0) 
+        {
+            GameObject.FindObjectOfType<EndLevel>().WinLevel();
+        }
         OnMindChanged?.Invoke(Mind);
     }
 

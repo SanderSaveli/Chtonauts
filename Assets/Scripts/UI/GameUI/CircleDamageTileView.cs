@@ -8,6 +8,7 @@ public class CircleDamageTileView : GeometryChangeTileView
     private void Start()
     {
         damageTile = GetComponentInParent<CircleDamageTile>();
+        base.Start();
     }
     protected override void TileActive()
     {
