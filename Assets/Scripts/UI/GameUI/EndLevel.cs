@@ -26,24 +26,24 @@ public class EndLevel : MonoBehaviour
 
     public void WinLevel()
     {
-        Time.timeScale = 0f;
         result.text = "Победа";
         _animator.SetBool("open", true);
         TimeSpan timeSpan = TimeSpan.FromSeconds(time);
         string displayTime = timeSpan.ToString("mm':'ss");
         timeToComplete.text = displayTime;
         restart.gameObject.SetActive(false);
+        StartCoroutine(WaitAndTimeScale0());
     }
 
     public void LoseLevel()
     {
-        Time.timeScale = 0f;
         result.text = "Поражение";
         _animator.SetBool("open", true);
         TimeSpan timeSpan = TimeSpan.FromSeconds(time);
         string displayTime = timeSpan.ToString("mm':'ss");
         timeToComplete.text = displayTime;
         restart.gameObject.SetActive(true);
+        StartCoroutine(WaitAndTimeScale0());
     }
 
     public void RestartScene()
@@ -57,6 +57,12 @@ public class EndLevel : MonoBehaviour
     {
         _animator.SetBool("open", false);
         SceneManager.LoadScene(0);
+    }
+
+    private IEnumerator WaitAndTimeScale0() 
+    { 
+        yield return new WaitForSeconds(1);
+        Time.timeScale = 0f;
     }
     
 }
