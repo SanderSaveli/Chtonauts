@@ -30,6 +30,9 @@ public class MoveController : MonoBehaviour
 
     private float elapsedTime = 0;
 
+    public AudioSource audioSource;
+    public AudioClip click;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -56,6 +59,12 @@ public class MoveController : MonoBehaviour
             elapsedTime = 0f;
             TimerUpdate();
         }
+        
+        if (Input.GetMouseButtonDown(0))
+        {
+            audioSource.PlayOneShot(click);
+        }
+
     }
 
     private void CameToPosition()
