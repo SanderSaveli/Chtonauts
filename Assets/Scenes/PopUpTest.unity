@@ -847,7 +847,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8b08564ffe6f1f34db14c51636c448f8, type: 3}
     m_FontSize: 50
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 58
@@ -926,10 +926,10 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: d5c9acc4810d50e47ad0c718ca49ae4b, type: 3}
     m_FontSize: 36
-    m_FontStyle: 0
-    m_BestFit: 0
+    m_FontStyle: 1
+    m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 50
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
