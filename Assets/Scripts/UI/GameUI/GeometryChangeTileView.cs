@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class GeometryChangeTileView : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GeometryChangeTileView : MonoBehaviour
     public ParticleSystem particleSystem;
     private float duration;
     public TMP_Text price;
+    protected IManaCostCalculator costCalculator;
     private void OnEnable()
     {
         targetTile = gameObject.GetComponentInParent<DurationTile>();
@@ -24,7 +26,12 @@ public class GeometryChangeTileView : MonoBehaviour
 
     public void Start()
     {
-        price.text = ServiceLocator.Get<IManaCostCalculator>().getCost(targetTile.TileType).ToString();
+        price.text = costCalculator.getCost(targetTile.TileType).ToString();
+    }
+
+    [Inject] private void Construct(IManaCostCalculator manaCostCalculator)
+    {
+        costCalculator = manaCostCalculator;
     }
     protected virtual void TileActive()
     {

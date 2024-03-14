@@ -16,7 +16,6 @@ public class GeometryChangeTile : DurationTile
 
     private void Start()
     {
-        _durationCalculator = ServiceLocator.Get<IDurationCalculator>();
         cell = gameObject.GetComponent<SurfaceCell>();
         surface = GameObject.FindObjectOfType<NavMeshSurface>();
         obstacle = GetComponent<NavMeshObstacle>();

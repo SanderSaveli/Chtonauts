@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 public class ManaSpender : MonoBehaviour
 {
@@ -6,27 +7,35 @@ public class ManaSpender : MonoBehaviour
 
     private IManaCostCalculator _costCalculator;
 
+    private Camera _camera;
+
+
     private void Start()
     {
-        _costCalculator = ServiceLocator.Get<IManaCostCalculator>();
-        Debug.Log(_costCalculator.ToString());
-        _manaService = ServiceLocator.Get<IManaService>();
-        
+        _camera = Camera.main;
     }
 
+    [Inject] 
+    private void Construct(IManaService manaService, IManaCostCalculator manaCostCalculator)
+    {
+        _manaService = manaService;
+        _costCalculator = manaCostCalculator;
+    }
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+            RaycastHit[] clickedObj = Physics.RaycastAll(ray);
 
-            if (Physics.Raycast(ray, out hit))
+            foreach(RaycastHit hitObj in clickedObj) 
             {
-                GameObject clickedObject = hit.collider.gameObject;
+                GameObject clickedObject = hitObj.collider.gameObject;
                 if (clickedObject.TryGetComponent<InteractiveTile>(out InteractiveTile changableTile))
                 {
                     ActivateTile(changableTile);
+                    break;
                 }
             }
         }

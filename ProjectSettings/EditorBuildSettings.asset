@@ -12,28 +12,28 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelMenu1.unity
     guid: a1187afee902872469847c5997d0bc73
   - enabled: 1
-    path: Assets/Scenes/AiTest.unity
+    path: Assets/Scenes/Levels/Level1.unity
     guid: fee9c965d6e914941bf18837a7d36e9a
   - enabled: 1
-    path: Assets/Scenes/TestLoadScenes/New Scene.unity
-    guid: 60d630b633a3e7247b29a8c276a5fad7
-  - enabled: 1
-    path: Assets/Scenes/TestLoadScenes/New Scene 1.unity
+    path: Assets/Scenes/Levels/Level3.unity
     guid: 74428efe37933f3419cab5a30b617c1f
   - enabled: 1
-    path: Assets/Scenes/TestLoadScenes/New Scene 2.unity
-    guid: 1bc5f1dc954927d4ba8d18dd34994a4a
+    path: Assets/Scenes/Levels/Level2.unity
+    guid: 60d630b633a3e7247b29a8c276a5fad7
   - enabled: 1
-    path: Assets/Scenes/TestLoadScenes/New Scene 3.unity
+    path: Assets/Scenes/Levels/Level5.unity
     guid: 8e6624f58c1f03342b8c4584a577a538
   - enabled: 1
-    path: Assets/Scenes/TestLoadScenes/New Scene 4.unity
+    path: Assets/Scenes/Levels/Level4.unity
+    guid: 1bc5f1dc954927d4ba8d18dd34994a4a
+  - enabled: 0
+    path: Assets/Scenes/Levels/New Scene 4.unity
     guid: 2510581a87ee1b54895d2354c46570a2
   - enabled: 0
-    path: Assets/Scenes/TestLoadScenes/New Scene 5.unity
+    path: Assets/Scenes/Levels/Level6.unity
     guid: 33f9939fd3075ff4a8c0301ebdcc10ad
   - enabled: 0
-    path: Assets/Scenes/TestLoadScenes/New Scene 6.unity
+    path: Assets/Scenes/Levels/New Scene 6.unity
     guid: cd09584a844eaab49a239ae3d2d20350
   - enabled: 1
     path: Assets/Scenes/GameUI.unity

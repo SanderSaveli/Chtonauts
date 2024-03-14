@@ -1,16 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 public abstract class DurationTile : InteractiveTile
 {
     public float activationTimeLeft { get; protected set; }
 
-    protected IDurationCalculator _durationCalculator;
-
-    private void Start()
-    {
-        _durationCalculator = ServiceLocator.Get<IDurationCalculator>();
-    }
+    [Inject] protected IDurationCalculator _durationCalculator;
 
     protected IEnumerator WaitTimeAndDeactivation(float tinme)
     {

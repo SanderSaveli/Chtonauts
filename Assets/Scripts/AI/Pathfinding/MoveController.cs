@@ -40,6 +40,7 @@ public class MoveController : MonoBehaviour
         exploreMove = new(transform, visitedLocations, rememberedLocations, explorationRadius, avoidanceRadius);
         CurrentDestonation = exploreMove.GetDestination();
         isAcktive = true;
+        audioSource = GameObject.FindObjectOfType<AudioSource>();
     }
 
     void Update()

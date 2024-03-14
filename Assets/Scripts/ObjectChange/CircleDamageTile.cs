@@ -1,10 +1,13 @@
 using UnityEngine;
+using Zenject;
 
 public class CircleDamageTile : DurationTile
 {
     public float radius;
-    private float timer = 0f;
     public float interval = 1f;
+
+    private float _timer = 0f;
+    private IDamageCalculator _damageCalculator;
     public override bool ActivateTile()
     {
         float duration = _durationCalculator.getDuration(TileType);
@@ -19,24 +22,29 @@ public class CircleDamageTile : DurationTile
 
     protected override void ActivationUpdate()
     {
-        timer += Time.deltaTime;
+        _timer += Time.deltaTime;
 
-        if (timer >= interval)
+        if (_timer >= interval)
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
             foreach (Collider collider in colliders)
             {
                 if (collider.gameObject.TryGetComponent(out Reseacher target))
                 {
-                    target.GetDamage(ServiceLocator.Get<IDamageCalculator>().getDamage(TileType));
+                    target.GetDamage(_damageCalculator.getDamage(TileType));
                 }
             }
-            timer = 0f;
+            _timer = 0f;
         }
     }
 
     protected override void Deactivation()
     {
-        timer = 0f;
+        _timer = 0f;
+    }
+
+    [Inject] private void Construct(IDamageCalculator damageCalculator)
+    {
+        _damageCalculator = damageCalculator;
     }
 }

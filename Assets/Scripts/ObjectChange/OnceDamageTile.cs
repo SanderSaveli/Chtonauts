@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 public class OnceDamageTile : DurationTile
 {
@@ -6,10 +7,16 @@ public class OnceDamageTile : DurationTile
     public Vector3 size = Vector3.one;
 
     private Vector3 boxCenter;
+    private IDamageCalculator _damageCalculator;
 
     private void OnEnable()
     {
         boxCenter = transform.position + transform.forward;
+    }
+
+    [Inject] private void Consruct(IDamageCalculator damageCalculator)
+    {
+        _damageCalculator = damageCalculator;
     }
 
     public override bool ActivateTile()
@@ -35,7 +42,7 @@ public class OnceDamageTile : DurationTile
         {
             if (collider.gameObject.TryGetComponent(out Reseacher target))
             {
-                target.GetDamage(ServiceLocator.Get<IDamageCalculator>().getDamage(TileType));
+                target.GetDamage(_damageCalculator.getDamage(TileType));
             }
         }
     }

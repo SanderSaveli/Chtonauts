@@ -1,12 +1,9 @@
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 public class Baffer : MonoBehaviour
 {
-    IDurationCalculator durationCalculator;
-    IManaService manaService;
-    IDamageCalculator DamageCalculator;
-
     public int damageIncreseCost;
     public int reloadIncreseCost;
     public int durationIncreseCost;
@@ -14,34 +11,44 @@ public class Baffer : MonoBehaviour
     public TMP_Text damageText;
     public TMP_Text reloadText;
     public TMP_Text durationText;
+
+    private IDurationCalculator _durationCalculator;
+    private IManaService _manaService;
+    private IDamageCalculator _damageCalculator;
     private void Start()
     {
-        durationCalculator = ServiceLocator.Get<IDurationCalculator>();
-        manaService = ServiceLocator.Get<IManaService>();
-        DamageCalculator = ServiceLocator.Get<IDamageCalculator>();
         damageText.text = damageIncreseCost.ToString();
         reloadText.text = reloadIncreseCost.ToString();
         durationText.text = durationIncreseCost.ToString();
     }
+
+    [Inject] private void Construct(IDurationCalculator durationCalculator, 
+        IManaService manaService, 
+        IDamageCalculator damageCalculator)
+    {
+        _durationCalculator = durationCalculator;
+        _manaService = manaService;
+        _damageCalculator = damageCalculator;
+    }
     public void IncreaseDamage()
     {
-        if (manaService.TrySpendMana(damageIncreseCost))
+        if (_manaService.TrySpendMana(damageIncreseCost))
         {
-            DamageCalculator.increaseModificatorForAll(2);
+            _damageCalculator.increaseModificatorForAll(2);
         }
     }
     public void IncreaseMatnaReload()
     {
-        if (manaService.TrySpendMana(reloadIncreseCost))
+        if (_manaService.TrySpendMana(reloadIncreseCost))
         {
-            manaService.increaseManaReload(0.2f);
+            _manaService.increaseManaReload(0.2f);
         }
     }
     public void IncreaseDyration()
     {
-        if (manaService.TrySpendMana(durationIncreseCost))
+        if (_manaService.TrySpendMana(durationIncreseCost))
         {
-            durationCalculator.increaseModificatorForAll(1);
+            _durationCalculator.increaseModificatorForAll(1);
         }
     }
 }
