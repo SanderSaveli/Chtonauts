@@ -7,28 +7,19 @@ public class GameplaySceneInstaller : MonoInstaller
     public ManaCostData costData;
     public DurationData durationData;
     public DamageCalculatorData damageData;
-
-    public IncreasedManaPool manaPool;
+    public AudioServiceData audioData;
+    private IncreasedManaPool manaPool;
     public override void InstallBindings()
     {
-        BindData();
         if(manaPool == null)
         {
             manaPool = GameObject.FindObjectOfType<IncreasedManaPool>();
         }
         Container.Bind<IManaPool>().FromInstance(manaPool);
-        Container.Bind<IManaService>().To<GameManaService>().FromNew().AsSingle();
-        Container.Bind<IManaCostCalculator>().To<ManaCostCalculator>().FromNew().AsSingle();
-        Container.Bind<IDurationCalculator>().To<DurationCalculator>().FromNew().AsSingle();
-        Container.Bind<IDamageCalculator>().To<DamageCalculator>().FromNew().AsSingle();
-        Debug.Log("1");
-    }
-
-    private void BindData()
-    {
-        Container.BindInstance(manaServiceData);
-        Container.BindInstance(costData);
-        Container.BindInstance(durationData);
-        Container.BindInstance(damageData);
+        Container.Bind<IManaService>().To<GameManaService>().FromInstance(new GameManaService(manaServiceData, manaPool)).AsSingle();
+        Container.Bind<IManaCostCalculator>().To<ManaCostCalculator>().FromInstance(new ManaCostCalculator(costData)).AsSingle();
+        Container.Bind<IDurationCalculator>().To<DurationCalculator>().FromInstance(new DurationCalculator(durationData)).AsSingle();
+        Container.Bind<IDamageCalculator>().To<DamageCalculator>().FromInstance(new DamageCalculator(damageData)).AsSingle();
+        Container.Bind<IAudioService>().To<AudioService>().FromInstance(new AudioService(audioData, gameObject.AddComponent<AudioSource>())).AsSingle();
     }
 }
