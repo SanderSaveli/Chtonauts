@@ -1,6 +1,6 @@
 using Zenject;
 using UnityEngine;
-
+using InputSystem;
 public class GameplaySceneInstaller : MonoInstaller
 {
     public ManaServiceData manaServiceData;
@@ -20,6 +20,7 @@ public class GameplaySceneInstaller : MonoInstaller
         Container.Bind<IManaCostCalculator>().To<ManaCostCalculator>().FromInstance(new ManaCostCalculator(costData)).AsSingle();
         Container.Bind<IDurationCalculator>().To<DurationCalculator>().FromInstance(new DurationCalculator(durationData)).AsSingle();
         Container.Bind<IDamageCalculator>().To<DamageCalculator>().FromInstance(new DamageCalculator(damageData)).AsSingle();
-        Container.Bind<IAudioService>().To<AudioService>().FromInstance(new AudioService(audioData, gameObject.AddComponent<AudioSource>())).AsSingle();
+        Container.Bind<IAudioService>().To<AudioService>().FromInstance(new AudioService(audioData)).AsSingle();
+        Container.Bind<IInputManager>().To<InputManager>().FromNew().AsSingle();
     }
 }

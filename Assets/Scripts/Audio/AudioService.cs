@@ -7,10 +7,10 @@ public class AudioService : IAudioService
     public float SoundVolume { get; private set; }
     private AudioServiceData _data;
     private AudioSource _source;
-    public AudioService(AudioServiceData data, AudioSource source)
+    public AudioService(AudioServiceData data)
     {
         _data = data;
-        _source = source;
+        _source = new GameObject("[AudioService]").AddComponent<AudioSource>();
     }
 
     public void ChandeAudioVolume(float value)

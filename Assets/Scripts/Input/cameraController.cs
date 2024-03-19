@@ -1,39 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-public class cameraController : MonoBehaviour
+namespace InputSystem
 {
-    public float speed = 5.0f;
-
-    void Update()
+    public class cameraController : MonoBehaviour
     {
-        if (Input.GetKey(KeyCode.W))
+        public float horisontalSpeed = 5.0f;
+        public float verticalSpeed = 0.5f;
+        [SerializeField] float minCameraWidth = 6;
+        [SerializeField] float maxCameraWidth = 15;
+        private IInputManager inputManager;
+        private float _cameraWidth;
+
+        private void Start()
         {
-            Vector3 dir = transform.forward;
-            dir.y = 0;
-            transform.position += dir * speed * Time.deltaTime;
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            Vector3 dir = transform.forward;
-            dir.y = 0;
-            transform.position -= dir * speed * Time.deltaTime;
+            _cameraWidth = transform.position.y;
         }
 
-        if (Input.GetKey(KeyCode.D))
+        [Inject]
+        private void Construct(IInputManager inputManager)
         {
-            Vector3 dir = transform.right;
-            dir.y = 0;
-            transform.position += dir * speed * Time.deltaTime;
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            Vector3 dir = transform.right;
-            dir.y = 0;
-            transform.position -= dir * speed * Time.deltaTime;
+            this.inputManager = inputManager;
         }
 
-        
+        void Update()
+        {
+            MoveCametra();
+            ChangeCameraWidth();
+        }
+
+        private void MoveCametra()
+        {
+            Vector2 input = inputManager.inputs.GameControl.CameraMove.ReadValue<Vector2>();
+            Vector3 dir = transform.forward * input.y + transform.right * input.x;
+            dir.y = 0;
+            transform.position += dir * horisontalSpeed * Time.deltaTime;
+        }
+
+        private void ChangeCameraWidth()
+        {
+            Vector2 input = inputManager.inputs.GameControl.CasmeraWidthChange.ReadValue<Vector2>();
+            float newPos = _cameraWidth + (-input.y * Time.deltaTime);
+            newPos = Mathf.Clamp(newPos, minCameraWidth, maxCameraWidth);
+            _cameraWidth = newPos;
+            Vector3 dir = transform.position;
+            dir.y = newPos;
+            transform.position = Vector3.Lerp(transform.position, dir, verticalSpeed * Time.deltaTime);
+        }
     }
 }

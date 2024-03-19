@@ -50109,7 +50109,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26f4b5a4c77645942b6cad911a378ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  horisontalSpeed: 10
+  verticalSpeed: 5
+  minCameraWidth: 5
+  maxCameraWidth: 17
 --- !u!81 &1535063474
 AudioListener:
   m_ObjectHideFlags: 0
